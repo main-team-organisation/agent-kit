@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "main-team": {
+      "type": "streamable-http",
+      "url": "https://mcp.main-team.org/mcp"
+    }
+  }
+}

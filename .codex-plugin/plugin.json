@@ -1,0 +1,39 @@
+{
+  "name": "main-team",
+  "version": "1.0.0",
+  "description": "Connect an AI app to your own Main Team olympiad account: a student's exam entries, fees, results and certificates, a teacher's class list and invoices, a partner's country. Includes the skills that keep it safe.",
+  "author": {
+    "name": "Main Team",
+    "url": "https://hub.main-team.org"
+  },
+  "homepage": "https://hub.main-team.org/ai",
+  "repository": "https://github.com/main-team-organisation/agent-kit",
+  "keywords": [
+    "main-team",
+    "olympiad",
+    "education",
+    "students",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": {
+    "main-team": {
+      "url": "https://mcp.main-team.org/mcp"
+    }
+  },
+  "interface": {
+    "displayName": "Main Team",
+    "shortDescription": "Olympiad exam entries, fees, results and class lists",
+    "developerName": "Main Team",
+    "category": "Education",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://hub.main-team.org/ai",
+    "defaultPrompt": [
+      "Which Main Team account am I connected to, and what may this app change?",
+      "Which exams can I still enter this season, and what do they cost?"
+    ]
+  }
+}

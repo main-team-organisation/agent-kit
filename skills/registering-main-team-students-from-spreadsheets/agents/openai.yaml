@@ -1,0 +1,7 @@
+interface:
+  display_name: "Main Team: register a class list"
+  short_description: "Register 30 to 1000 Main Team students from a spreadsheet in one request"
+  default_prompt: "Register the students in this spreadsheet on Main Team."
+
+policy:
+  allow_implicit_invocation: true

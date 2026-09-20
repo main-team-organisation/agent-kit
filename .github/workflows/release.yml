@@ -1,0 +1,68 @@
+# Validates the kit on every push and pull request, and publishes a GitHub release for a v* tag:
+# one zip per skill (the skill's folder at the zip's root, for a chat app that takes skill files)
+# and their SHA-256 checksums. Actions are pinned to full commit SHAs, as the organization requires.
+#
+# There is no publish job: the kit ships no installable package, and provenance would need a public
+# source repository, which this one is not until launch.
+
+name: release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+      - name: Check the kit's format
+        run: node scripts/validate.mjs .
+      - name: Check the scripts parse
+        run: |
+          for f in skills/*/scripts/*.mjs scripts/*.mjs; do [ -e "$f" ] && node --check "$f"; done
+          for f in skills/*/scripts/*.py; do [ -e "$f" ] && python3 -c "import ast, sys; ast.parse(open(sys.argv[1]).read())" "$f"; done
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: validate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Pack the skills
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          mkdir -p dist
+          cd skills
+          for skill in */; do
+            name="${skill%/}"
+            find "$name" -exec touch -h -d '1980-01-02 00:00:00' {} +
+            zip -X -r "../dist/main-team-${name}-${TAG#v}.zip" "$name"
+          done
+          cd ../dist
+          sha256sum *.zip > SHA256SUMS
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "$TAG" dist/* --title "$TAG" --notes-file CHANGELOG.md --verify-tag

@@ -1,0 +1,20 @@
+{
+  "name": "main-team",
+  "interface": {
+    "displayName": "Main Team"
+  },
+  "plugins": [
+    {
+      "name": "main-team",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    }
+  ]
+}

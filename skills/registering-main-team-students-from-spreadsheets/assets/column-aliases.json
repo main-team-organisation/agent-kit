@@ -1,0 +1,23 @@
+{
+  "comment": "Spreadsheet headers scripts/roster.py recognizes, per field. A header is compared in lower case with everything but letters and digits removed, so 'First Name', 'first_name' and 'FIRST-NAME' are the same header. A password column is recognized only so that it can be reported and left out: no password is ever sent.",
+  "fields": {
+    "first_name": ["first name", "firstname", "given name", "forename", "vorname", "prenom", "nombre", "ad", "isim", "imie"],
+    "last_name": ["last name", "lastname", "surname", "family name", "nachname", "nom", "apellido", "apellidos", "soyad", "soyadi", "nazwisko"],
+    "full_name": ["full name", "fullname", "student name", "name surname", "ad soyad", "adi soyadi", "name"],
+    "birth": ["birth", "date of birth", "birth date", "birthdate", "birthday", "dob", "geburtsdatum", "date de naissance", "fecha de nacimiento", "dogum tarihi", "data urodzenia"],
+    "sex": ["sex", "gender", "geschlecht", "sexe", "genero", "sexo", "cinsiyet", "plec"],
+    "email": ["email", "e-mail", "email address", "mail", "e posta", "eposta"],
+    "phone": ["phone", "phone number", "mobile", "telephone", "tel", "telefon", "telefono"],
+    "country": ["country", "country id", "land", "pays", "pais", "ulke", "kraj"],
+    "city": ["city", "town", "stadt", "ville", "ciudad", "sehir", "il", "miasto"],
+    "school": ["school", "school name", "schule", "ecole", "escuela", "okul", "szkola"],
+    "grade": ["grade", "class", "year", "klasse", "classe", "curso", "sinif", "klasa"],
+    "platforms": ["platforms", "platform", "olympiads", "olympiad", "organizations", "olimpiyat"],
+    "password": ["password", "passwort", "mot de passe", "contrasena", "sifre", "haslo"]
+  },
+  "sex_values": {
+    "m": ["m", "male", "boy", "man", "mannlich", "masculin", "masculino", "erkek", "e", "chlopiec"],
+    "f": ["f", "female", "girl", "woman", "weiblich", "feminin", "femenino", "kiz", "kadin", "k", "dziewczynka"],
+    "n": ["n", "x", "other", "non-binary", "nonbinary", "divers", "diger"]
+  }
+}

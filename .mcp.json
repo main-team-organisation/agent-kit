@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "main-team": {
+      "type": "http",
+      "url": "https://mcp.main-team.org/mcp"
+    }
+  }
+}
