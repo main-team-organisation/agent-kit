@@ -12,6 +12,10 @@ Every tool that acts on one olympiad takes `brand`, one of these slugs:
 | `gmath` | the mathematics olympiad |
 | `coding` | the programming olympiad |
 
+Two subjects are on two olympiads: mathematics on `stem` and `gmath`, science on `stem` and `neo`.
+A person connected on both who asks for "the math exam" or "the science exam" is asked which
+olympiad they mean; never pick one for them.
+
 `brand` may be left out only when the connection covers exactly one of them. Otherwise pass it, and
 pass a slug `main-team:whoami` returned: a slug outside the connection answers `brand_not_allowed`
 and nothing happens.
@@ -19,7 +23,10 @@ and nothing happens.
 ## One person, different roles
 
 A role is per olympiad. The same person can be a student on one and a teacher on another, and a
-partner is a teacher with a wider view on the olympiads where they hold it. So:
+partner on a third. **A partner is not a teacher with a wider view.** A partner sees more students —
+a whole country, or the students of the teachers linked to them — but has fewer tools: no
+registering new students, no student list of their own to add to or remove from, no results, no
+invoices and no group challenges. What a partner can do is in the two partner skills. So:
 
 - do not carry an assumption from one olympiad to the next;
 - when a task spans two olympiads, do each one in turn and say which one you are in;

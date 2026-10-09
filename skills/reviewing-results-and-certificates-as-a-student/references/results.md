@@ -15,6 +15,10 @@ there is one, the `report_id`.
 
 ## What comes back
 
+- `exam` — which exam the score belongs to: the subject, the sitting, its `session_date` and the
+  language, the same fields the list carries. Say which exam it was from this, not from the list you
+  read a moment ago. Once in a while only `exam_id` comes back, and then the exam has no name to give:
+  say the result is for an exam you cannot name rather than guessing one from another call.
 - `table` — the scores, as the platform generated them.
 - `details` — labelled rows: sections, topics, marks, sometimes a band or a rank.
 - `participated`, `submitted` — whether the student sat it and handed it in.
@@ -61,7 +65,9 @@ promise. Do not re-read in a loop.
 
 ## What never happens here
 
-- The PDF is never returned, whatever the request. Hand over `view_url`.
+- The official PDF is never returned, whatever the request. Hand over `view_url`. An MCP copy from
+  `main-team:get_result_copy`, where the connection offers it, is made for AI use and is not the
+  official report.
 - There is no shareable verification link, and building one is not possible from anything returned.
 - A result is never changed, appealed, recalculated or re-issued through any tool in this kit. An
   appeal is a conversation with Main Team through the panel.

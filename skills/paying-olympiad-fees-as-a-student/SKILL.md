@@ -15,8 +15,10 @@ Every tool this skill uses: [references/tools.md](references/tools.md).
 
 ## What is owed
 
-`main-team:list_my_exams` with the `brand`. Each entry carries `paid`, `price` and `currency`.
-Report only what it says:
+`main-team:list_my_exams` with the `brand`. Each entry carries `paid`, `price`, `price_display`
+and `currency`. **Every amount is already in the currency's major unit, never cents**: `price` 25
+with `currency` EUR is 25.00 EUR, which `price_display` spells out. Quote that text; never divide or
+multiply an amount by 100. Report only what it says:
 
 > "On stem you have two entries. Physics, 14 March — paid. Chemistry, 21 March — 25.00 EUR still to
 > pay."
@@ -31,7 +33,7 @@ than a number. That is deliberate; say "paid by somebody else" rather than guess
 ## Getting the payment link
 
 `main-team:get_payment_link` with the `brand` and the `application_id` from
-`main-team:list_my_exams`. It answers `amount`, `currency` and `url`.
+`main-team:list_my_exams`. It answers `amount`, `amount_display`, `currency` and `url`.
 
 Hand the link over with what it is for and what it costs:
 
@@ -49,7 +51,8 @@ than giving a link — which is the tool telling you there is nothing to pay.
 
 `main-team:check_discount_code` with the `brand` and the `code` says whether it is usable by this
 account right now and what it is worth — `valid`, `kind`, `rate` or `amount`, and the categories in
-`applies_to`.
+`applies_to`. A fixed `amount` is in the major unit like every other (`amount_display`, "5.00 EUR");
+a `rate` is a percentage (`rate_display`, "20%").
 
 It reserves nothing and uses nothing up. The code is still typed in on the payment screen. A code
 that is unknown, expired, used up or not for this account comes back with `valid` false rather than

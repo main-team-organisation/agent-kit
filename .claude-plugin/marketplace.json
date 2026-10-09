@@ -6,18 +6,18 @@
   },
   "metadata": {
     "description": "The Main Team plugin: the MCP server and its skills.",
-    "version": "1.0.0"
+    "version": "2.2.2"
   },
   "plugins": [
     {
       "name": "main-team",
       "source": "./",
-      "description": "Connect an AI app to your own Main Team olympiad account: a student's exam entries, fees, results and certificates, a teacher's class list and invoices, a partner's country. Includes the skills that keep it safe.",
-      "version": "1.0.0",
+      "description": "Connect an AI app to your own Main Team olympiad account: a student's exam entries, fees, results and certificates, a teacher's class list, new students and invoices, a partner's country. Includes the skills that keep it safe.",
+      "version": "2.2.2",
       "author": {
         "name": "Main Team"
       },
-      "homepage": "https://hub.main-team.org/ai",
+      "homepage": "https://hub.main-team.org/api/skills",
       "category": "productivity"
     }
   ]

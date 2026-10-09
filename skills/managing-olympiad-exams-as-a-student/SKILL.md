@@ -18,8 +18,12 @@ Every tool here: [references/tools.md](references/tools.md).
 ### "What am I entered for?"
 
 `main-team:list_my_exams` with the `brand`. It answers every entry — upcoming, under way and past —
-with the exam, the sitting date and start time with its `time_zone`, whether it is `paid`, the
-`price`, and the hints `can_change` and `can_cancel`.
+with the exam, the sitting's `exam_date` with its `time_zone` and its `exam_start_time`, whether it
+is `paid`, the `price` with its `price_display`, and the hints `can_change` and `can_cancel`. The
+`price` is already in the currency's major unit, never cents: 25 with `currency` EUR is 25.00 EUR,
+so quote `price_display` and never divide it by 100. The start time is
+`exam_start_time`, not `exam_time`: that is the panel's display text, which for some sittings is a
+window such as "24 Hours in GMT" rather than a time.
 
 Read it before anything else: every other tool here needs an `application_id` from this list. The
 platform does some catching up when it is read, so call it when something has actually changed
@@ -31,7 +35,7 @@ rather than over and over.
 country, what they have entered, and the olympiad's own rule about two exams on one day — so
 everything it returns is something `main-team:add_exam_application` will accept.
 
-Offer at most five options, each with the date, the time, the language and the `price`, and wait
+Offer at most five options, each with the date, the time, the language and the `price_display`, and wait
 for the student to choose. Do not choose for them.
 [references/finding-and-adding.md](references/finding-and-adding.md).
 

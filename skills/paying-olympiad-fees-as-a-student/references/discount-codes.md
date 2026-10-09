@@ -8,7 +8,11 @@ into the payment screen, by the person, when they pay.
 
 ```jsonc
 { "brand": "stem", "code": "SPRING25" }
-//  -> { "valid": true, "kind": "percentage", "rate": 20, "applies_to": [ ... ], "currency": "EUR" }
+//  -> { "valid": true, "kind": "rate", "amount": null, "amount_display": null, "currency": null,
+//       "rate": 20, "rate_display": "20%", "applies_to": [ ... ] }
+{ "brand": "stem", "code": "SPRING5" }
+//  -> { "valid": true, "kind": "static", "amount": 5, "amount_display": "5.00 EUR", "currency": "EUR",
+//       "rate": null, "rate_display": null, "applies_to": [ ... ] }
 ```
 
 `categories` is an optional argument: pass the `category_id` values of the entries the person means,
@@ -20,11 +24,13 @@ and `applies_to` comes back scoped to those. Take the ids from `main-team:list_m
 | Field | Meaning |
 |---|---|
 | `valid` | whether this account can use it now |
-| `kind` | a fixed amount off, or a percentage |
-| `rate` | the percentage, when that is the kind |
-| `amount` | the fixed amount, when that is the kind |
+| `kind` | `static`, a fixed amount off, or `rate`, a percentage off |
+| `rate` | the percentage, when that is the kind: 20 is 20% off |
+| `rate_display` | the same percentage as text, "20%" |
+| `amount` | the fixed amount, when that is the kind, in the currency's major unit: 5 is 5.00 EUR, never cents |
+| `amount_display` | the same amount as text to quote, "5.00 EUR" |
 | `applies_to` | the exam categories it covers |
-| `currency` | the currency of a fixed amount |
+| `currency` | the currency of a fixed amount; `null` for a rate code, which is a percentage, not money |
 
 Report it plainly: "That code is 20% off, and it covers the Physics and Chemistry categories. Type it
 in on the payment screen."

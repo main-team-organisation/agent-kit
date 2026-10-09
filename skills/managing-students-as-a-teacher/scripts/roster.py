@@ -52,14 +52,22 @@ def sorted_fold(text):
 
 
 def read_table(path):
-    with open(path, newline="", encoding="utf-8-sig") as handle:
-        sample = handle.read(4096)
-        handle.seek(0)
-        try:
-            dialect = csv.Sniffer().sniff(sample, delimiters=",;\t|")
-        except csv.Error:
-            dialect = csv.excel
-        return [row for row in csv.reader(handle, dialect) if any(cell.strip() for cell in row)]
+    """The rows of a UTF-8 CSV. A spreadsheet file is refused: it is saved as "CSV UTF-8" first."""
+    with open(path, "rb") as handle:
+        if handle.read(4) in (b"PK\x03\x04", b"\xd0\xcf\x11\xe0") or path.lower().endswith((".xlsx", ".xls", ".xlsm", ".ods", ".numbers")):
+            sys.exit('normalise: %s is a spreadsheet, not a CSV. Save it as "CSV UTF-8 (Comma delimited)" (Excel: File > '
+                     'Save As; Google Sheets: File > Download > CSV) and run this on that file.' % path)
+    try:
+        with open(path, newline="", encoding="utf-8-sig") as handle:
+            sample = handle.read(4096)
+            handle.seek(0)
+            try:
+                dialect = csv.Sniffer().sniff(sample, delimiters=",;\t|")
+            except csv.Error:
+                dialect = csv.excel
+            return [row for row in csv.reader(handle, dialect) if any(cell.strip() for cell in row)]
+    except UnicodeDecodeError:
+        sys.exit('normalise: %s is not UTF-8 text. Save it again as "CSV UTF-8" and run this on that file.' % path)
 
 
 def header_map(header):

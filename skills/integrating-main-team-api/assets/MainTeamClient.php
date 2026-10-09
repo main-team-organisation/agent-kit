@@ -1,6 +1,6 @@
 <?php
 // MainTeamClient.php: a minimal Main Team API client (PHP 8.1+, ext-curl, firebase/php-jwt).
-// Generated from the Main Team API contract 1.1.1: the minimal client of
+// Generated from the Main Team API contract 1.2.0: the minimal client of
 // https://hub.main-team.org/api/clients/build-your-own. Do not edit: it is rebuilt with every release.
 declare(strict_types=1);
 

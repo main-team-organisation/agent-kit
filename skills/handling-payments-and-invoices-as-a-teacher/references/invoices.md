@@ -4,11 +4,11 @@
 
 ```jsonc
 main-team:list_my_invoices { "brand": "gmath", "page": 1 }
-//  -> invoices: student_count, amount, currency, date
+//  -> invoices: student_count, amount and amount_display (major units, never cents), currency, date
 ```
 
-Each row says how many students the invoice covers, what it came to and when it was issued. That is
-the whole of what is available.
+Each row says how many students the invoice covers, what it came to and when it was issued. Quote
+`amount_display` ("300.00 EUR") as it stands. That is the whole of what is available.
 
 - **The document is not available through an AI app.** No PDF, no link to one in the answer. The
   teacher downloads it from their panel; `main-team:get_panel_link` with the page `my_students`
@@ -27,7 +27,7 @@ When a teacher asks for "my invoices for this season", read the pages and summar
 
 ```jsonc
 main-team:list_my_payments { "brand": "gmath" }
-//  -> payments: amount or amount_hidden, currency, date, exam, session_date, category_id
+//  -> payments: amount and amount_display (major units, never cents) or amount_hidden, currency, date, exam, session_date, category_id
 ```
 
 It lists the payments **on this account**: the ones this teacher made for their students.

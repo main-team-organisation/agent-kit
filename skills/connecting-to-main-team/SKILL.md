@@ -53,13 +53,21 @@ at a time and say which one you are in. See
 | a student | fees, discount codes, payment links | `paying-olympiad-fees-as-a-student` |
 | a student | scores, reports, certificates | `reviewing-results-and-certificates-as-a-student` |
 | a student | past papers, calendar, announcements | `preparing-for-olympiads-as-a-student` |
-| a teacher | their student list and exam entries | `managing-students-as-a-teacher` |
+| a student | their group challenge, its group and steps | `taking-part-in-group-challenges-as-a-student` |
+| a teacher | their student list, exporting it, exam entries, past papers | `managing-students-as-a-teacher` |
+| a teacher | registering new students — no account yet — from a sheet, with their exams | `registering-new-students-as-a-teacher` |
 | a teacher | sittings, results, certificates | `following-student-results-as-a-teacher` |
 | a teacher | paying for a class, invoices | `handling-payments-and-invoices-as-a-teacher` |
-| a partner | their country's students and unpaid entries | `managing-country-students-as-a-partner` |
+| a teacher | forming and following group challenge groups | `running-group-challenges-as-a-teacher` |
+| a partner | their country's students, exporting them, unpaid entries, their own payments and certificates, past papers | `managing-country-students-as-a-partner` |
 | a partner | the teachers they work with | `working-with-teachers-as-a-partner` |
+| a partner | registering new students | none: a partner cannot. The students' own teacher registers them, with `registering-new-students-as-a-teacher` |
 
-Every one of them assumes `whoami` has already been called.
+Every one of them assumes `whoami` has already been called. A developer or an integration holding a
+Main Team API key is not served by this server at all: the REST API skills in the same kit are
+theirs. "Partner" means two things in this kit: here it is a role on an olympiad, a country or
+regional representative; in the REST API skills it is an organisation holding an API account,
+whose work is those skills' and never this connection's.
 
 ## 4. What this connection will never do
 
@@ -69,8 +77,12 @@ Say so plainly when asked, and never look for a way round it:
   way. No tool exists for it, on purpose.
 - It never returns a username, a student or teacher code, an e-mail address, a phone number or a
   date of birth. A student is an opaque handle such as `stu_x7k2m9p4`, a study paper a handle such
-  as `mat_q4w8e1r5`.
-- It never returns a report or certificate file, and there is no shareable verification link.
+  as `mat_q4w8e1r5`. A teacher who registers new students gives each one's own e-mail address; it
+  goes in and never comes back, and the platform e-mails the student their username and password.
+- It never returns the official report or certificate file, and there is no shareable verification
+  link. Where offered, `main-team:get_certificate_copy` and `main-team:get_result_copy` attach a PDF
+  copy made for AI use, without the user ID, document number or QR code — a copy, not the official
+  document.
 - It never moves money. A payment tool answers a link that opens the person's own panel.
 - It never changes a password, an e-mail address or profile details.
 - It never acts for anybody but the person who approved it.
@@ -97,6 +109,7 @@ this connection may hold: [references/tools.md](references/tools.md).
 
 ## 6. Pace
 
-The server allows about sixty calls a minute and a few thousand a day per connection, and far fewer
-changes. That is generous for real work and tight for a loop. Read a list once and work from it;
-do not poll, and do not re-read something after every single change.
+The server allows sixty calls a minute and 3,000 a day per connection, and 30 changes an hour — a
+change's preview and its confirmed call count as two. A student's connection may also make 30
+changes a day. That is generous for real work and tight for a loop. Read a list once and work from
+it; do not poll, and do not re-read something after every single change.

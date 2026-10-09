@@ -30,14 +30,22 @@ Rules that are easy to get wrong:
   the fresh summary, and confirm again — do not assume the answer is still yes.
 - **Never invent one.** A value that was not returned by this same tool in this session is a guess,
   and the server refuses it.
-- **A batch is one confirmation.** `main-team:add_exams_for_students` previews the whole batch and
-  confirms the whole batch. Show how many students and how many entries before confirming.
+- **A batch is one confirmation.** `main-team:add_exams_for_students` and
+  `main-team:register_students` preview the whole batch and confirm the whole batch. Show how many
+  students and how many entries before confirming.
+- **A preview is a change, for the budget.** A connection may make 30 changes an hour, and the first
+  call and the confirmed call each count, so a batch costs two. Batch rather than loop.
+- **"No" is an answer.** Where the app asks the person itself rather than answering a value, a
+  refusal comes back as `cancelled_by_user`: nothing changed, and the question is not put again in
+  other words.
 
 ## Class D: the person, or nothing
 
-Four tools cannot be undone: `main-team:cancel_exam_application`,
+Nine tools cannot be undone. Four act on entries and lists: `main-team:cancel_exam_application`,
 `main-team:unlink_my_teacher`, `main-team:remove_student_from_my_list` and
-`main-team:remove_unpaid_exam`.
+`main-team:remove_unpaid_exam`. Five act on a group challenge: `main-team:submit_group_step`,
+`main-team:submit_group_project` and `main-team:delete_group_project_file` for a student, and
+`main-team:finalize_project_group` and `main-team:delete_project_group` for a teacher.
 
 The app itself must put the question to the person. Where the app cannot, the tool comes back with a
 plain answer — `status` `open_in_panel` and a panel link, not an error — and **nothing happens**:

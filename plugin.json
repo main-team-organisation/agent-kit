@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "main-team",
-  "version": "1.0.0",
-  "description": "Connect an AI app to your own Main Team olympiad account: a student's exam entries, fees, results and certificates, a teacher's class list and invoices, a partner's country. Includes the skills that keep it safe.",
+  "version": "2.2.2",
+  "description": "Connect an AI app to your own Main Team olympiad account: a student's exam entries, fees, results and certificates, a teacher's class list, new students and invoices, a partner's country. Includes the skills that keep it safe.",
   "author": {
     "name": "Main Team",
     "url": "https://hub.main-team.org"
   },
-  "homepage": "https://hub.main-team.org/ai",
+  "homepage": "https://hub.main-team.org/api/skills",
   "repository": "https://github.com/main-team-organisation/agent-kit",
   "keywords": [
     "main-team",

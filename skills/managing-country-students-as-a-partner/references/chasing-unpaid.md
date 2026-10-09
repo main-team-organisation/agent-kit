@@ -18,15 +18,23 @@ There is no unpaid-entries tool. The roster is the source.
    and the teacher the student belongs to.
 3. Stop paging when the question is answered. A count by grade rarely needs the whole country.
 
-Totals come from the `price` and `currency` the tool returned. Do not convert currencies and do not
-estimate a fee that was not read.
+For a count or a lookup, page. For the whole list or an export, `main-team:export_student_list`: its
+table has the teacher and a paid cell per exam, which is enough to count unpaid entries per teacher,
+but it carries no `application_id` — a cart link still comes from `main-team:list_country_students`
+or `main-team:get_student`.
+
+**Count entries, not money.** No tool answers what an unpaid entry owes: the roster tools give `paid`
+and no price, and `main-team:find_exams_for_student` lists only the exams a student does not hold
+yet. Do not add up list prices, convert currencies or estimate a fee that was not read; the cart page
+behind `main-team:get_students_payment_link` shows the total, in the olympiad's own currency (USD on
+neo, EUR on the others).
 
 ## Grouping by teacher
 
 The useful shape is per teacher, because a teacher is who the partner actually talks to:
 
-> "Unpaid on neo, grade 9 and 10: 34 entries across 9 teachers, 850.00 EUR. The largest are
-> Ms Ramírez with 11 and Mr Adeyemi with 7."
+> "Unpaid on neo, grade 9 and 10: 34 entries across 9 teachers. The largest are Ms Ramírez with 11
+> and Mr Adeyemi with 7."
 
 Name students only when the partner asks for that teacher's detail, and then in the conversation —
 not in anything to be sent on.
@@ -47,9 +55,9 @@ worth, before any of that.
 
 Write it for the partner to send from their own account, and keep it to what the tools returned:
 
-> "Dear Ms Ramírez, 11 entries for the 21 March sitting on neo are still unpaid — 275.00 EUR in
-> total, across 9 students in grades 9 and 10. The payment page in your My Students view has them
-> all. Could you let me know if any of them have withdrawn?"
+> "Dear Ms Ramírez, 11 entries for the 21 March sitting on neo are still unpaid, across 9 students
+> in grades 9 and 10. The payment page in your My Students view has them all, with the total in USD.
+> Could you let me know if any of them have withdrawn?"
 
 Rules for a draft:
 

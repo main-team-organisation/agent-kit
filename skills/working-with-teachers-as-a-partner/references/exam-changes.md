@@ -25,12 +25,15 @@ to avoid.
 
 ```jsonc
 main-team:find_exams_for_student { "brand": "neo", "student": "stu_x7k2m9p4" }
-//  -> exams: exam_id, category_id, session_id, session_date, language_code, price, currency
+//  -> exams: exam_id, category_id, session_id, session_date, language_code, price, price_display, currency
 ```
 
 The list already accounts for the student's grade, the partner's country, what the student holds and
 the olympiad's same-day rule. Students in the same grade get the same list, so call it **once per
 grade**, not once per student.
+
+`session_date` is the sitting's calendar day, with no start time and no time zone; for a sitting run
+over two days, which its name shows, it is the last day.
 
 Offer the partner a handful of options per grade, with dates and fees, and let them choose.
 

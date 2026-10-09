@@ -4,11 +4,12 @@
 
 `main-team:get_payment_link` composes the address of the student's own panel payment screen for one
 entry. It opens no payment session, reserves nothing, charges nothing and expires nothing. The
-answer is `application_id`, `amount`, `currency` and `url`.
+answer is `application_id`, `amount`, `amount_display`, `currency` and `url`. The amount is already
+in the currency's major unit, never cents: quote `amount_display`.
 
 ```jsonc
 { "brand": "stem", "application_id": "70b3d5e2a1c94f6081b2c3d4" }
-//  -> { "amount": 25, "currency": "EUR", "url": "https://my.example.org/..." }
+//  -> { "amount": 25, "amount_display": "25.00 EUR", "currency": "EUR", "url": "https://my.example.org/..." }
 ```
 
 ## Handing it over

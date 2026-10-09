@@ -1,7 +1,7 @@
 {
   "name": "main-team",
-  "version": "1.0.0",
-  "description": "Connect an AI app to your own Main Team olympiad account: exam entries, fees, results, certificates, class lists and country figures, with the skills that keep it safe.",
+  "version": "2.2.2",
+  "description": "Connect an AI app to your own Main Team olympiad account: exam entries, fees, results, certificates, class lists, new students and country figures, with the skills that keep it safe.",
   "contextFileName": "GEMINI.md",
   "mcpServers": {
     "main-team": {

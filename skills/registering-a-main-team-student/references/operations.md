@@ -1,8 +1,8 @@
-<!-- Generated from the Main Team API contract 1.1.1 (https://hub.main-team.org/api/openapi.json). Do not edit: it is rebuilt with every release. -->
+<!-- Generated from the Main Team API contract 1.2.0 (https://hub.main-team.org/api/openapi.json). Do not edit: it is rebuilt with every release. -->
 
 # Operations
 
-The 18 operations this skill uses, of the Main Team API 1.1.1. Paths are relative to
+The 18 operations this skill uses, of the Main Team API 1.2.0. Paths are relative to
 `https://api.main-team.org` (production) or `https://apisnd.main-team.org` (sandbox).
 `{organizationId}` is the organization's `_id` from `GET /v1/organization`, never its slug.
 Each operation name links to its full reference: fields, examples and errors.

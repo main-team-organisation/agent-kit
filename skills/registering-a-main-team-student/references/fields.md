@@ -1,4 +1,4 @@
-<!-- Generated from the Main Team API contract 1.1.1 (https://hub.main-team.org/api/openapi.json). Do not edit: it is rebuilt with every release. -->
+<!-- Generated from the Main Team API contract 1.2.0 (https://hub.main-team.org/api/openapi.json). Do not edit: it is rebuilt with every release. -->
 
 # Fields
 

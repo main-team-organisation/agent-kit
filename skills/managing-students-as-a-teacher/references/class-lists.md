@@ -28,6 +28,13 @@ The script never calls the network. Between step 2 and step 3 the tools do the w
 [{"student": "stu_x7k2m9p4", "name": "Ada Nwosu", "grade": "9"}]
 ```
 
+For a long list, `main-team:export_student_list` with `include_handles` gives the same students in
+one table. Turn each row into one entry of `students.json`: the `student` column is the handle, the
+first and last name joined with a space is the name, and the grade column is the grade. Leave the
+other columns out — the match needs nothing else, and the less of the list sits in a file, the
+better. A table that took more than one call carries the handle column anyway; drop a row whose
+handle is already in the file.
+
 `exams.json` maps a grade to the exam ids the teacher picked:
 
 ```json
@@ -37,7 +44,8 @@ The script never calls the network. Between step 2 and step 3 the tools do the w
 ## The columns a list needs
 
 A header row, a grade column, and either a single name column or both a given-name and a
-family-name column. `assets/class-list-template.csv` is a working example. Common spellings of each
+family-name column, in a UTF-8 CSV: an Excel file is saved as "CSV UTF-8" first, and the script
+refuses a workbook. `assets/class-list-template.csv` is a working example. Common spellings of each
 heading are recognised, including a few in other languages; anything else is reported rather than
 guessed at.
 
@@ -54,9 +62,13 @@ It matches on **name and grade only**. There is deliberately nothing else to mat
 returns no username, no student code and no e-mail address, so there is no identifier in a
 spreadsheet that could be used, and a column of them in the teacher's file must be left alone.
 
-Matching never reaches outside the teacher's own list. A student who is not on it cannot be entered
-from here at all — they link themselves to the teacher first, with the teacher's username, which the
-student does from their own account.
+Matching never reaches outside the teacher's own list. A student who is not on it is one of two
+kinds, and the teacher knows which: a student who **already has a Main Team account** links
+themselves to the teacher first, with the teacher's username, from their own account; a student
+with **no account yet** can be registered by the teacher, with their exams, from a registration
+sheet, with the skill `registering-new-students-as-a-teacher`. Never register a row only because it
+did not match: an unmatched row is usually a spelling difference, and registering it would make a
+second account for a student who already has one.
 
 ## Unmatched and ambiguous rows
 
@@ -64,7 +76,7 @@ student does from their own account.
 |---|---|---|
 | matched | carried into the plan | nothing |
 | ambiguous — two students share the name and grade | left out, reported | ask the teacher which one, then edit the file and run again |
-| unmatched — nobody on the list has that name and grade | left out, reported | usually a spelling difference, a grade the teacher has not updated, or a student not yet linked |
+| unmatched — nobody on the list has that name and grade | left out, reported | usually a spelling difference, a grade the teacher has not updated, or a student not yet linked; a student with no account yet is registered with `registering-new-students-as-a-teacher` instead |
 
 Never guess. Never pick "the closest one". Never enter a student because the teacher said "just do
 your best with the rest" — read the unmatched rows back to them instead.

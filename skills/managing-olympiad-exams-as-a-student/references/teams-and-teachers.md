@@ -27,9 +27,10 @@ is worth saying out loud both when linking and when unlinking.
 
 ### Is there one?
 
-`main-team:get_my_teacher` with the `brand` reports `linked`. The platform does not currently return
-the teacher's name through this route, so a linked student may come back with nothing more than
-"linked" — that is a gap, not an error. Send them to the panel to see who it is.
+`main-team:get_my_teacher` cannot tell you. The platform does not return the linked teacher through
+this route, so it always answers `linked: null` and `reported: false`, with a message pointing to the
+panel dashboard. That means "not known", never "no teacher" — a gap, not an error, and no reason to
+link one. Ask the student, or send them to the dashboard, which shows who their teacher is.
 
 ### Linking
 

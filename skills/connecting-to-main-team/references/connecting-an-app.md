@@ -27,8 +27,8 @@ never offer to "do the sign-in", and never accept a link that carries a code or 
 
 ## Per-app instructions
 
-The install steps for each AI app are published at `https://hub.main-team.org/ai/connect`. Point the
-person there rather than guessing menu names; apps rename their settings often.
+The install steps for each AI app are published at `https://hub.main-team.org/api/mcp`, one page
+per app. Point the person there rather than guessing menu names; apps rename their settings often.
 
 ## How long it lasts
 

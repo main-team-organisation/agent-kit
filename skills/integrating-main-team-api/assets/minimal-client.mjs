@@ -1,5 +1,5 @@
 // main-team-client.mjs: a minimal Main Team API client (Node.js 20+).
-// Generated from the Main Team API contract 1.1.1: the minimal client of
+// Generated from the Main Team API contract 1.2.0: the minimal client of
 // https://hub.main-team.org/api/clients/build-your-own. Do not edit: it is rebuilt with every release.
 import jwt from 'jsonwebtoken';
 import { randomUUID } from 'node:crypto';

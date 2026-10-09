@@ -15,9 +15,11 @@
 **twenty exams** each. `roster.py plan` builds batches of fifty by default; `--chunk` makes them
 smaller, which is worth doing on a first run.
 
-The connection also has its own budget — roughly sixty calls a minute, and far fewer changes per
-hour. Fifty students in one confirmed call is one change; fifty separate calls is fifty, and will
-run into `rate_limited`. Batch properly rather than looping per student.
+The connection also has its own budget: sixty calls a minute, and **30 changes an hour**. A batch
+costs two changes — its first call and the confirmed one — whatever its size, so fifty students in
+one batch is two changes, while fifty one-student batches would be a hundred and run into
+`rate_limited` within the hour. Batch properly rather than looping per student, and when
+`rate_limited` comes, wait rather than splitting the work into more calls.
 
 ## The two-call shape
 

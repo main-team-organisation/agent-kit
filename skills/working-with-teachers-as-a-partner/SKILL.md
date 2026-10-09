@@ -1,6 +1,6 @@
 ---
 name: working-with-teachers-as-a-partner
-description: "Helps a partner — a country or regional representative — of a Main Team olympiad, on stem, hilingua, neo, gmath or coding, work with the teachers in their scope through the main-team MCP server: listing and searching the teachers they work with by name, seeing which students belong to each, checking what a teacher's grades may still enter, entering a teacher's students for exams in confirmed batches of up to fifty, removing an unpaid entry a teacher has withdrawn, and reading the sittings those students are booked into. Explains that a limited partner sees only the teachers linked to them, that no contact detail of any kind is ever returned so a follow-up is drafted for the partner to send themselves, that the roster tools take a name search rather than a teacher id, and what role_required, not_found and exam_not_eligible mean. Use when a partner asks which teachers are active, what a teacher's class has entered, or to make exam changes on a teacher's behalf."
+description: "Helps a partner — a country or regional representative — of a Main Team olympiad, on stem, hilingua, neo, gmath or coding, work with the teachers in their scope through the main-team MCP server: listing and searching the teachers they work with by name, seeing which students belong to each, checking what a teacher's grades may still enter, entering a teacher's students for exams in confirmed batches of up to fifty, removing an unpaid entry a teacher has withdrawn, and reading the olympiad's sitting dates. Explains that a limited partner sees only the teachers linked to them, that no contact detail of any kind is ever returned so a follow-up is drafted for the partner to send themselves, that the roster tools take a name search rather than a teacher id, and what role_required, not_found and exam_not_eligible mean. Use when a partner asks which teachers are active, what a teacher's class has entered, or to make exam changes on a teacher's behalf."
 license: Apache-2.0
 metadata:
   audience: "partner"
@@ -29,8 +29,9 @@ to. So "show me Ms Ramírez's students" is a name `search` or a page through the
 teacher — there is no teacher id to filter by, and no tool that takes one.
 
 `main-team:get_student` reads one student in full: their grade, school, and entries with whether
-each is `paid`. `main-team:list_exam_sessions` shows the sittings this partner's students are
-booked into, grouped by category and session.
+each is `paid`. `main-team:list_exam_sessions` shows every sitting on the
+olympiad from July 2025 on, grouped by category and session — the olympiad's list, not the sittings
+these students are booked into, which only the roster and `main-team:get_student` say.
 
 ## Exam changes on a teacher's behalf
 
@@ -55,6 +56,11 @@ themselves has to confirm it; a paid or sat entry cannot be removed at all.
 No individual results, no statistics, no invoices, no "set as paid", no identifier of any person and
 no document. The panel withholds those from a partner too. Say so and stop; do not assemble a
 substitute out of repeated reads.
+
+**No registering new students**, for a teacher or for anybody: `register_students` is a teacher's
+own tool, and a partner's connection does not have it. When a teacher asks their partner to
+register their class, the answer is that the teacher does it themselves, connected with their own
+teacher account; a student who already has an account links themselves to the teacher.
 
 There is also no tool to add a teacher, link one to a partner, remove one, or change what a teacher
 may do. All of that is panel work.

@@ -3,12 +3,12 @@
   "name": "org.main-team/mcp",
   "title": "Main Team",
   "description": "Manage your own Main Team olympiad exams, fees, results and students.",
-  "version": "1.0.0",
+  "version": "2.2.2",
   "repository": {
     "url": "https://github.com/main-team-organisation/agent-kit",
     "source": "github"
   },
-  "websiteUrl": "https://hub.main-team.org/ai",
+  "websiteUrl": "https://hub.main-team.org/api/skills",
   "remotes": [
     {
       "type": "streamable-http",

@@ -50,5 +50,5 @@ conversation.
 ## Between sessions
 
 Nothing is remembered on the server between conversations except the connection itself. Handles
-(`stu_`, `mat_`) are sealed to one connection: a handle from a previous session, or from another
+(`stu_`, `mat_`, `crt_`) are sealed to one connection: a handle from a previous session, or from another
 app, means nothing here. Always take handles from a list read in this session.

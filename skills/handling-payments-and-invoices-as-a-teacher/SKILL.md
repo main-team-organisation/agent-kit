@@ -1,6 +1,6 @@
 ---
 name: handling-payments-and-invoices-as-a-teacher
-description: "Helps a teacher (supervisor account) on a Main Team olympiad — stem, hilingua, neo, gmath or coding — deal with their class's exam fees through the main-team MCP server: finding which of their students' entries are unpaid and what each costs, checking whether a discount code is usable and what it is worth, building one panel cart link that covers up to twenty entries at once, removing an unpaid entry that is not going to be paid, reading the payments already made, and listing the teacher's own invoices. Explains that no money moves through an AI app and no tool marks anything paid, that the coding olympiad's cart takes one entry at a time while the others take twenty, that an amount somebody else paid comes back hidden, that invoice documents are downloaded in the panel and some countries have none, and what payment_required and not_allowed_here mean. Use when a teacher asks who still owes, how to pay for a class, whether a code works, or where an invoice is."
+description: "Helps a teacher (supervisor account) on a Main Team olympiad — stem, hilingua, neo, gmath or coding — deal with their class's exam fees through the main-team MCP server: finding which of their students' entries are unpaid, counted rather than priced, checking whether a discount code is usable and what it is worth, building one panel cart link that covers up to twenty entries at once, removing an unpaid entry that is not going to be paid, reading the payments already made, and listing the teacher's own invoices. Explains that no money moves through an AI app and no tool marks anything paid, that the coding olympiad's cart takes one entry at a time while the others take twenty, that an amount somebody else paid comes back hidden, that invoice documents are downloaded in the panel and some countries have none, and what payment_required and not_allowed_here mean. Use when a teacher asks who still owes, what an exam costs, how to pay for a class, whether a code works, or where an invoice is."
 license: Apache-2.0
 metadata:
   audience: "supervisor"
@@ -22,12 +22,23 @@ There is no "unpaid entries" tool. Build the list from the roster:
 2. Collect the entries where `paid` is false.
 3. `main-team:get_student` for one student when the teacher wants the detail of just that one.
 
+Students just registered with their exams are on the list too, every entry unpaid: their
+`application_id` comes from this read, never from the registration answer, which carries exam ids.
+
 Report it as a summary and offer the detail:
 
-> "Grade 9 on gmath: 6 unpaid entries across 5 students, 150.00 EUR in total. Shall I list them?"
+> "Grade 9 on gmath: 6 unpaid entries across 5 students. Shall I list them?"
 
-Add up only the amounts the tool returned, in the `currency` it gave. Never convert, never estimate,
-never guess a fee that was not read.
+**Count entries, not money.** The roster gives `paid` and no price, so no tool answers what the
+unpaid entries owe; the cart page behind `main-team:get_students_payment_link` shows that total. Never
+add up list prices, convert, estimate or guess a fee that was not read. **Every amount a tool does
+return is already in the currency's major unit, never cents**: `price` or `amount` 25 with
+`currency` EUR is 25.00 EUR, with USD (neo) 25.00 USD, and the `_display` text beside it says so.
+Quote that; never divide or multiply an amount by 100.
+
+**What one exam costs** is the one fee a teacher's tools answer: `main-team:find_exams_for_student`
+for a student on the list, or `main-team:find_exams_for_grade` for a grade with no students yet,
+gives each exam's `price` and `price_display`. Quote it per entry, and leave totals to the cart.
 
 ## Paying for several at once
 
@@ -37,14 +48,16 @@ never guess a fee that was not read.
 **The coding olympiad's cart takes one entry at a time.** Every other olympiad takes up to twenty.
 Plan for that before promising a single link.
 
-Hand the link over with what it covers and what it costs, and then stop. Do not open it, store it,
-shorten it, forward it or put it in a file.
+Hand the link over with what it covers (the cart shows what it costs), and then stop. Do not open
+it, store it, shorten it, forward it or put it in a file.
 [references/carts-and-links.md](references/carts-and-links.md).
 
 ## Discount codes
 
 `main-team:check_discount_code` with the `brand` and the `code` says whether it is usable by **this
-account** and what it is worth — `valid`, `kind`, `rate` or `amount`, `applies_to`. Pass
+account** and what it is worth — `valid`, `kind`, `rate` or `amount`, `applies_to`. A fixed
+`amount` is in the major unit (`amount_display`, "5.00 EUR"); a `rate` is a percentage
+(`rate_display`, "20%"). Pass
 `categories` to scope the answer to the categories the class is entered for.
 
 It reserves nothing and uses nothing up; the code is typed in on the payment screen. `valid` false
@@ -64,8 +77,8 @@ whatever the fee then is. One entry, one confirmation — never a blanket yes ov
 - `main-team:list_my_payments` lists what this teacher has paid, and for whom. An amount somebody
   else paid comes back as `amount_hidden` — say "paid by somebody else" rather than guessing a
   number.
-- `main-team:list_my_invoices` lists this teacher's invoices: `student_count`, `amount`, `currency`
-  and `date`. The document itself is not available through an AI app, and some countries have no
+- `main-team:list_my_invoices` lists this teacher's invoices: `student_count`, `amount` (with
+  `amount_display`), `currency` and `date`. The document itself is not available through an AI app, and some countries have no
   invoices at all, so an empty list is a normal answer.
   [references/invoices.md](references/invoices.md).
 

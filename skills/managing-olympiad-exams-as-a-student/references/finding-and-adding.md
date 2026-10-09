@@ -15,21 +15,32 @@ So anything it returns is something `main-team:add_exam_application` will accept
 insists an exam is missing, the answer is that the platform does not offer it to them — not that
 the list is wrong. Do not go looking for the exam id another way.
 
-Each row carries `exam_id`, `category_id`, `session_id`, `session_date`, `language_code`, `price`
-and `currency`.
+Each row carries `exam_id`, `category_id`, `session_id`, `session_date`, `language_code`, `price`,
+`price_display` and `currency`. `price` is already in the currency's major unit, never cents (25 is
+25.00 EUR); `price_display` is the text to quote.
+
+`session_date` is the sitting's calendar day, such as `2026-03-14`, with no start time and no time
+zone. A sitting run over two days, which its name shows, gives its **last** day here. Once the
+student has entered, `main-team:list_my_exams` gives the same sitting's **first** day as
+`exam_date`, with `time_zone`, so the two can differ by a day and both are right. The moment the
+sitting starts is its `exam_start_time`; its `exam_time` is the panel's display text, a start time
+for some sittings and a window such as "24 Hours in GMT" for others, so never read a start time
+out of it.
 
 ## Offering the options
 
 Five at most, in the student's own words:
 
 > "Three sittings are open for you on stem:
->  1. Physics, senior — 14 March, 09:00, English — 25.00 EUR
->  2. Physics, senior — 21 March, 14:00, English — 25.00 EUR
->  3. Chemistry, senior — 21 March, 09:00, English — 25.00 EUR
+>  1. Physics, senior — 14 March, English — 25.00 EUR
+>  2. Physics, senior — 21 March, English — 25.00 EUR
+>  3. Chemistry, senior — 21 March, English — 25.00 EUR
 >  Which one?"
 
-Sort by date. Say the time zone the tool gave. Do not recommend one unless asked, and if asked, say
-what it is based on — the date, the fee — rather than inventing difficulty or prestige.
+Sort by date. Give the day only: this list has no start time, so do not invent one. If the student
+asks when it starts, say `main-team:list_my_exams` shows the time and its time zone once they have
+entered, and the panel shows it too. Do not recommend one unless asked, and if asked, say what it is
+based on — the date, the fee — rather than inventing difficulty or prestige.
 
 ## Entering
 

@@ -31,9 +31,10 @@ answer:
 
 ## Handing a link over
 
-Say what it covers, what it costs, and that the payment happens on that page:
+Say what it covers and that the payment happens on that page, where the total is shown — no tool
+answers what the entries cost, so do not put a figure on it:
 
-> "This link opens your cart with 12 entries for grade 9 — 300.00 EUR in total. Open it and pay
+> "This link opens your cart with 12 entries for grade 9; the cart shows the total. Open it and pay
 > there."
 
 Then stop.
@@ -68,5 +69,6 @@ on the platform, and the connection's budget will run out on nothing.
 
 A class's fees may be paid by the teacher, by parents individually, or by a partner. All that can be
 said from here is what the tools return: `paid`, and in `main-team:list_my_payments` either an
-amount this teacher paid or `amount_hidden` where somebody else did. Do not infer who paid, and do
+amount this teacher paid, with its `amount_display` to quote, or `amount_hidden` where somebody else
+did. Do not infer who paid, and do
 not chase a parent — there are no contact details in any answer, and no tool sends anything.
